@@ -11,7 +11,7 @@ public partial class reservation : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+       
     }
 
     protected void reserver(object sender, EventArgs e)
@@ -20,7 +20,7 @@ public partial class reservation : System.Web.UI.Page
         {
             database db = new database();
             OleDbConnection cnn = db.connection();
-            string cmdstr = "INSERT INTO reservation ( nom , prenom , cin , nombre , date_arrivee , date_reservation ) VALUES ( '" + nom.Text + "' , '" + prenom.Text + "' ,'" + cin.Text + "' ,'" + nbpers.Value + "' , '" + date_reservation.Value + "' , '" + DateTime.Now.ToString("dd/MM/yyyy") + "')";
+            string cmdstr = "INSERT INTO reservation ( nom , prenom , cin , nombre , date_arrivee , date_reservation , nbchambre , nbnuits ) VALUES ( '" + nom.Text + "' , '" + prenom.Text + "' ,'" + cin.Text + "' ,'" + nbpers.Value + "' , '" + date_reservation.Value + "' , '" + DateTime.Now.ToString("dd/MM/yyyy") + "' , '"+nbchambres.Value+"', '"+nbnuits.Value+"')";
             try
             {
                 cnn.Open();

@@ -35,6 +35,12 @@
                             <asp:TableHeaderCell>
                                 nombre de personnes
                             </asp:TableHeaderCell>
+                                                        <asp:TableHeaderCell>
+                                nombre de chambres
+                            </asp:TableHeaderCell>
+                                                        <asp:TableHeaderCell>
+                                nombre de nuits
+                            </asp:TableHeaderCell>
                         </asp:TableHeaderRow>
                     </asp:Table>
                 </div>
