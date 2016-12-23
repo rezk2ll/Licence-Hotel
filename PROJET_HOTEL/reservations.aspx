@@ -1,16 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="reservations.aspx.cs" Inherits="reservations" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  masterpagefile="~/MasterPage.master" CodeFile="reservations.aspx.cs" Inherits="reservations" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Liste des reservations</title>
-    <link href='css/bootstrap.min.css' rel="stylesheet" />
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-</head>
-<body>
-    <div class="container" style="padding-top: 10%">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <div class="container" style="padding-top: 6%">
         <div style="position: fixed; top: 50%; left: 10%;">
             <a href="#"><span class="glyphicon glyphicon-chevron-left" style="font-size: 50px;" onclick="window.location.href = window.history.back(1);"></span></a>
         </div>
@@ -50,5 +41,4 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+    </asp:Content>

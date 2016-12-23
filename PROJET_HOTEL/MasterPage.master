@@ -1,0 +1,56 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>License Hôtel</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        <link href='css/bootstrap.min.css' rel="stylesheet" />
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </asp:ContentPlaceHolder>
+
+</head>
+<body>
+    <nav class="navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                glyphicon glyphicon-star-empty
+                <a class="navbar-brand" href="./">Licence Hôtel - 
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li id="homem" class="active">
+                        <a href="./">accueil</a>
+                    </li>
+                    <li class="active">
+                        <a href="reservations.aspx">reservations</a>
+                    </li>
+                    <li class="active">
+                        <a href="enregistrement.aspx">Enregistrement</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active">
+                        <a href="logout.aspx">checkout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+    </asp:ContentPlaceHolder>
+</body>
+</html>
