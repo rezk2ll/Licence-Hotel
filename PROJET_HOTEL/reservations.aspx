@@ -42,31 +42,34 @@
                     <asp:Table ID="listreserv" runat="server" CssClass="table">
                         <asp:TableHeaderRow>
                             <asp:TableHeaderCell>
-                                supprimer
+                                Supprimer
                             </asp:TableHeaderCell>
                             <asp:TableHeaderCell>
-                                nom
+                                Nom
                             </asp:TableHeaderCell>
                             <asp:TableHeaderCell>
-                                prenom
+                                Prenom
                             </asp:TableHeaderCell>
                             <asp:TableHeaderCell>
-                                cin
+                                Cin
                             </asp:TableHeaderCell>
                             <asp:TableHeaderCell>
-                                date reservation
+                                Date reservation
                             </asp:TableHeaderCell>
                             <asp:TableHeaderCell>
-                                date d'arrivée
+                                Date d'arrivée
                             </asp:TableHeaderCell>
                             <asp:TableHeaderCell>
-                                nombre de personnes
+                                Nombre de personnes
                             </asp:TableHeaderCell>
                             <asp:TableHeaderCell>
-                                formule
+                                Formule
                             </asp:TableHeaderCell>
                             <asp:TableHeaderCell>
-                                nombre de nuits
+                                Nombre de nuitées
+                            </asp:TableHeaderCell>
+                            <asp:TableHeaderCell>
+                                Enregistrer
                             </asp:TableHeaderCell>
                         </asp:TableHeaderRow>
                     </asp:Table>

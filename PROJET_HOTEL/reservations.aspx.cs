@@ -51,6 +51,7 @@ public partial class reservations : System.Web.UI.Page
                             TableCell c7 = new TableCell();
                             TableCell c8 = new TableCell();
                             TableCell c9 = new TableCell();
+                            TableCell c10= new TableCell();
                             c1.Text = "<a href='reservations.aspx?delete=" + rd["id"].ToString() + "'><span class='glyphicon glyphicon-remove'></span></a>";
                             c2.Text = (string)rd["nom"];
                             c3.Text = (string)rd["prenom"];
@@ -60,6 +61,7 @@ public partial class reservations : System.Web.UI.Page
                             c7.Text = rd["formule"].ToString();
                             c8.Text = rd["nbnuits"].ToString();
                             c9.Text = rd["date_arrivee"].ToString();
+                            c10.Text = "<a href='Enregistrement.aspx?enr=" + rd["id"].ToString() + "'><span class='glyphicon glyphicon-floppy-disk'></span></a>";
                             r1.Cells.Add(c1);
                             r1.Cells.Add(c2);
                             r1.Cells.Add(c3);
@@ -69,6 +71,7 @@ public partial class reservations : System.Web.UI.Page
                             r1.Cells.Add(c6);
                             r1.Cells.Add(c7);
                             r1.Cells.Add(c8);
+                            r1.Cells.Add(c10);
                             listreserv.Rows.Add(r1);
                         }
                     }
