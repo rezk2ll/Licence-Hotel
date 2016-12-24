@@ -58,8 +58,19 @@ public partial class reservations : System.Web.UI.Page
                             c4.Text = (string)rd["cin"];
                             c5.Text = rd["date_reservation"].ToString().Split(':')[0].Split(' ')[0];
                             c6.Text = rd["nombre"].ToString();
-                            c7.Text = rd["formule"].ToString();
-                            c8.Text = rd["nbnuits"].ToString();
+                        if (rd["formule"].ToString() == "pd")
+                        {
+                            c7.Text = "Petit Déjeuner";
+                        }
+                        else if (rd["formule"].ToString() == "dp")
+                        {
+                            c7.Text = "Demi-Pension";
+                        }
+                        else
+                        {
+                            c7.Text = "Pension Complète";
+                        }
+                        c8.Text = rd["nbnuits"].ToString();
                             c9.Text = rd["date_arrivee"].ToString();
                             c10.Text = "<a href='Enregistrement.aspx?enr=" + rd["id"].ToString() + "'><span class='glyphicon glyphicon-floppy-disk'></span></a>";
                             r1.Cells.Add(c1);
