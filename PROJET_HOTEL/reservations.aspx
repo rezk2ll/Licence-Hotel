@@ -26,7 +26,7 @@
                         </asp:RadioButtonList> 
                     </asp:TableCell>
                     <asp:TableCell HorizontalAlign="Center">
-                        <input runat="server" type="date" id="DateArrivee" class="form-control" />
+                        <input runat="server" type="" id="DateArrivee" class="form-control" />
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
@@ -51,28 +51,31 @@
                     <asp:Table ID="listreserv" runat="server" CssClass="table">
                         <asp:TableHeaderRow>
                             <asp:TableHeaderCell>
-                                Id
+                                Supprimer
                             </asp:TableHeaderCell>
                             <asp:TableHeaderCell>
-                                nom
+                                Nom
                             </asp:TableHeaderCell>
                             <asp:TableHeaderCell>
-                                prenom
+                                Prenom
                             </asp:TableHeaderCell>
                             <asp:TableHeaderCell>
-                                cin
+                                Cin
                             </asp:TableHeaderCell>
                             <asp:TableHeaderCell>
-                                date reservation
+                                Date de réservation
                             </asp:TableHeaderCell>
                             <asp:TableHeaderCell>
-                                nombre de personnes
+                                Date d'arrivée
                             </asp:TableHeaderCell>
-                                                        <asp:TableHeaderCell>
-                                nombre de chambres
+                            <asp:TableHeaderCell>
+                                Nombre de personnes
                             </asp:TableHeaderCell>
-                                                        <asp:TableHeaderCell>
-                                nombre de nuits
+                            <asp:TableHeaderCell>
+                                Formule
+                            </asp:TableHeaderCell>
+                            <asp:TableHeaderCell>
+                                Nombre de nuitées
                             </asp:TableHeaderCell>
                         </asp:TableHeaderRow>
                     </asp:Table>

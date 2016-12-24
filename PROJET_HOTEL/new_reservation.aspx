@@ -28,7 +28,7 @@
                             <asp:Label ID="Label2" CssClass="control-label" runat="server">Nombre de personnes</asp:Label>
                             <input type="number" class="form-control" id="nbpers" runat="server" max="4" min="1" />
                             <asp:Label ID="Label3" CssClass="control-label" runat="server">La Date d'arrivée</asp:Label>
-                            <input type="date" required="required" id="date_reservation" class="form-control" runat="server" />
+                            <input type="date" required="required" id="date_arrivee" class="form-control" runat="server" />
                             <asp:Label ID="Label4" CssClass="control-label" runat="server">Nombre de nuitées</asp:Label>
                             <input type="number" class="form-control" id="nbnuits" runat="server" min="1" max="14"/>
                       

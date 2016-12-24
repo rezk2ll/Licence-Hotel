@@ -35,14 +35,28 @@ public partial class reservations : System.Web.UI.Page
                         TableCell c6 = new TableCell();
                         TableCell c7 = new TableCell();
                         TableCell c8 = new TableCell();
+                        TableCell c9 = new TableCell();
                         c1.Text = "<a href='reservations.aspx?delete=" + rd["id"].ToString() + "'><span class='glyphicon glyphicon-remove'></span></a>";
                         c2.Text = (string)rd["nom"];
                         c3.Text = (string)rd["prenom"];
                         c4.Text = (string)rd["cin"];
                         c5.Text = (string)rd["date_reservation"].ToString();
-                        c6.Text = rd["nombre"].ToString();
-                        c7.Text = rd["nbchambre"].ToString();
-                        c8.Text = rd["nbnuits"].ToString();
+                        c6.Text = (string)rd["date_arrivee"].ToString();
+                        c7.Text = rd["nombre"].ToString();
+                        if (rd["formule"].ToString() == "pd")
+                        {
+                            c8.Text = "Petit Déjeuner";
+                        }
+                        else if (rd["formule"].ToString() == "dp")
+                        {
+                            c8.Text = "Demi-Pension";
+                        }
+                        else
+                        {
+                            c8.Text = "Pension Complète";
+                        }
+
+                        c9.Text = rd["nbnuits"].ToString();
                         r1.Cells.Add(c1);
                         r1.Cells.Add(c2);
                         r1.Cells.Add(c3);
@@ -51,6 +65,8 @@ public partial class reservations : System.Web.UI.Page
                         r1.Cells.Add(c6);
                         r1.Cells.Add(c7);
                         r1.Cells.Add(c8);
+                        r1.Cells.Add(c9);
+
                         listreserv.Rows.Add(r1);
                     }
                 }
@@ -81,26 +97,26 @@ public partial class reservations : System.Web.UI.Page
             {
                 if (DateArrivee.Value!="" )
                 {
-                    slct = "SELECT * FROM reservation where nom like '%" + nom.Text + "%' AND formule like '" + formule.SelectedValue + "' AND date_arrivee like '"+DateArrivee.Value+"' ORDER BY id DESC";
-                    //Response.Write(slct);
+                    slct = "SELECT * FROM reservation where nom like '%" + nom.Text + "%' AND formule like '" + formule.SelectedValue + "' AND date_arrivee = '"+DateArrivee.Value+"' ORDER BY id DESC";
+                    Response.Write(slct);
                 }
                 else
                 {
                     slct = "SELECT * FROM reservation where nom like '%" + nom.Text + "%' AND formule like '" + formule.SelectedValue + "' ORDER BY id DESC";
-                   // Response.Write(slct);
+                    Response.Write(slct);
                 }
             }
             else
             {
                 if (DateArrivee.Value != "")
                 {
-                    slct = "SELECT * FROM reservation where nom like '%" + nom.Text + "%' AND date_arrivee like '" + DateArrivee.Value + "' ORDER BY id DESC";
-                    //Response.Write(slct);
+                    slct = "SELECT * FROM reservation where nom like '%" + nom.Text + "%' AND date_arrivee ='" + DateArrivee.Value + "' ORDER BY id DESC";
+                    Response.Write(slct);
                 }
                 else
                 {
                     slct = "SELECT * FROM reservation where nom like '%" + nom.Text + "%' ORDER BY id DESC";
-                   // Response.Write(slct);
+                    Response.Write(slct);
                 }
             }
         }
@@ -110,26 +126,26 @@ public partial class reservations : System.Web.UI.Page
             {
                 if (DateArrivee.Value != "")
                 {
-                    slct = "SELECT * FROM reservation where formule like '" + formule.SelectedValue + "' AND date_arrivee like '" + DateArrivee.Value + "' ORDER BY id DESC";
-                    //Response.Write(slct);
+                    slct = "SELECT * FROM reservation where formule like '" + formule.SelectedValue + "' AND date_arrivee = '" + DateArrivee.Value + "' ORDER BY id DESC";
+                    Response.Write(slct);
                 }
                 else
                 {
                     slct = "SELECT * FROM reservation where formule like '" + formule.SelectedValue + "' ORDER BY id DESC";
-                    //Response.Write(slct);
+                    Response.Write(slct);
                 }
             }
             else
             {
                 if (DateArrivee.Value != "")
                 {
-                    slct = "SELECT * FROM reservation where date_arrivee like '" + DateArrivee.Value + "' ORDER BY id DESC";
-                    //Response.Write(slct);
+                    slct = "SELECT * FROM reservation where date_arrivee = '" + DateArrivee.Value + "' ORDER BY id DESC";
+                   Response.Write(slct);
                 }
                 else
                 {
                     slct = "SELECT * FROM reservation ORDER BY id DESC";
-                    //Response.Write(slct);
+                    Response.Write(slct);
                 }
             }
         }   
@@ -153,24 +169,40 @@ public partial class reservations : System.Web.UI.Page
                         TableCell c6 = new TableCell();
                         TableCell c7 = new TableCell();
                         TableCell c8 = new TableCell();
-                        c1.Text = "<a href='reservations.aspx?delete=" + rd["id"].ToString() + "'><span class='glyphicon glyphicon-remove'></span></a>";
-                        c2.Text = (string)rd["nom"];
-                        c3.Text = (string)rd["prenom"];
-                        c4.Text = (string)rd["cin"];
-                        c5.Text = (string)rd["date_reservation"].ToString();
-                        c6.Text = rd["nombre"].ToString();
-                        c7.Text = rd["nbchambre"].ToString();
-                        c8.Text = rd["nbnuits"].ToString();
-                        r1.Cells.Add(c1);
-                        r1.Cells.Add(c2);
-                        r1.Cells.Add(c3);
-                        r1.Cells.Add(c4);
-                        r1.Cells.Add(c5);
-                        r1.Cells.Add(c6);
-                        r1.Cells.Add(c7);
-                        r1.Cells.Add(c8);
-                        listreserv.Rows.Add(r1);
+                        TableCell c9 = new TableCell();
+                    c1.Text = "<a href='reservations.aspx?delete=" + rd["id"].ToString() + "'><span class='glyphicon glyphicon-remove'></span></a>";
+                    c2.Text = (string)rd["nom"];
+                    c3.Text = (string)rd["prenom"];
+                    c4.Text = (string)rd["cin"];
+                    c5.Text = (string)rd["date_reservation"].ToString();
+                    c6.Text = (string)rd["date_arrivee"].ToString();
+                    c7.Text = rd["nombre"].ToString();
+                    if (rd["formule"].ToString() == "pd")
+                    {
+                        c8.Text = "Petit Déjeuner";
                     }
+                    else if (rd["formule"].ToString() == "dp")
+                    {
+                        c8.Text = "Demi-Pension";
+                    }
+                    else
+                    {
+                        c8.Text = "Pension Complète";
+                    }
+
+                    c9.Text = rd["nbnuits"].ToString();
+                    r1.Cells.Add(c1);
+                    r1.Cells.Add(c2);
+                    r1.Cells.Add(c3);
+                    r1.Cells.Add(c4);
+                    r1.Cells.Add(c5);
+                    r1.Cells.Add(c6);
+                    r1.Cells.Add(c7);
+                    r1.Cells.Add(c8);
+                    r1.Cells.Add(c9);
+
+                    listreserv.Rows.Add(r1);
+                }
                 }
            }
            catch(Exception ex)
