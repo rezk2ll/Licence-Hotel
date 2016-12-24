@@ -33,7 +33,7 @@
                             <input type="number" class="form-control" id="nbnuits" runat="server" min="1" max="14"/>
                       
                             <asp:Label ID="Label5" CssClass="control-label" runat="server">Formule</asp:Label>
-                            <asp:DropDownList ID="formule" runat="server" >
+                            <asp:DropDownList CssClass="form-control" ID="formule" runat="server" >
                                 <asp:ListItem Value="pd">Petit Déjeuner</asp:ListItem>
                                 <asp:ListItem Value="dp">Demi-Pension</asp:ListItem>
                                 <asp:ListItem Value="pc">Pension Complète</asp:ListItem>
