@@ -10,7 +10,7 @@
             <br />
             <asp:Table ID="Table1" runat="server" Width="647px" Height="155px" HorizontalAlign="Center">
                 <asp:TableHeaderRow>
-                    <asp:TableHeaderCell HorizontalAlign="Center"> Nom ou Prenom </asp:TableHeaderCell>
+                    <asp:TableHeaderCell HorizontalAlign="Center"> Nom </asp:TableHeaderCell>
                     <asp:TableHeaderCell HorizontalAlign="Center"> Formule </asp:TableHeaderCell>
                     <asp:TableHeaderCell HorizontalAlign="Center"> Date d'arrivée </asp:TableHeaderCell>
                 </asp:TableHeaderRow>
@@ -19,19 +19,19 @@
                         <asp:TextBox ID="nom" runat="server"></asp:TextBox> 
                     </asp:TableCell>
                     <asp:TableCell HorizontalAlign="Center"> 
-                        <asp:CheckBoxList ID="formule" runat="server"> 
-                            <asp:ListItem Text="Petit Dejeuner" Value="pd"></asp:ListItem>
+                        <asp:RadioButtonList ID="formule" runat="server" Font-Size="Small"> 
+                            <asp:ListItem Text="Petit Dejeuner" Value="pd" ></asp:ListItem>
                             <asp:ListItem Text="Demi-Pension" Value="dp"></asp:ListItem>
                             <asp:ListItem Text="Pension Complète" Value="pc"></asp:ListItem>
-                        </asp:CheckBoxList> 
+                        </asp:RadioButtonList> 
                     </asp:TableCell>
                     <asp:TableCell HorizontalAlign="Center">
-                        <input type="date" id="DateArrivee" class="form-control" />
+                        <input runat="server" type="date" id="DateArrivee" class="form-control" />
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell ColumnSpan="3" HorizontalAlign="Center">
-                        <asp:Button ID="bcherche" runat="server" Text="chercher" />
+                        <asp:Button ID="bcherche" runat="server" Text="chercher" OnClick="bcherche_Click" />
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
