@@ -10,7 +10,7 @@
             <form id="form1" method="post" runat="server">
                 <asp:Table ID="Table1" runat="server" Width="647px" Height="155px" HorizontalAlign="Center">
                     <asp:TableHeaderRow>
-                        <asp:TableHeaderCell HorizontalAlign="Center"> numéro de la carte d'identité </asp:TableHeaderCell>
+                        <asp:TableHeaderCell HorizontalAlign="Center"> Numéro de la carte d'identité </asp:TableHeaderCell>
                         <asp:TableHeaderCell HorizontalAlign="Center"> et  </asp:TableHeaderCell>
                         <asp:TableHeaderCell HorizontalAlign="Center"> Date de reservation (facultative) </asp:TableHeaderCell>
                     </asp:TableHeaderRow>
