@@ -86,7 +86,6 @@ public partial class reservations : System.Web.UI.Page
                             listreserv.Rows.Add(r1);
                         }
                     }
-                
             }
             else 
             {

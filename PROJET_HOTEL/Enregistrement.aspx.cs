@@ -9,7 +9,9 @@ using System.Web.UI.WebControls;
 public partial class Enregistrement : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
-    {
+    {   
+        if (!IsPostBack)
+        {
         database db = new database();
         System.Data.OleDb.OleDbConnection cnn = db.connection();
         try
@@ -33,15 +35,15 @@ public partial class Enregistrement : System.Web.UI.Page
                             nbrpersonnes.Text = rd["nombre"].ToString();
                             if (rd["formule"].ToString() == "pd")
                             {
-                                formule.Text = "Petit Déjeuner";
+                                formule.SelectedValue = "pd";
                             }
                             else if (rd["formule"].ToString() == "dp")
                             {
-                                formule.Text = "Demi-Pension";
+                                formule.SelectedValue = "dp";
                             }
                             else
                             {
-                                formule.Text = "Pension Complète";
+                                formule.SelectedValue = "pc";
                             }
                             nbrnuit.Text = rd["nbnuits"].ToString();
                         }
@@ -57,6 +59,35 @@ public partial class Enregistrement : System.Web.UI.Page
             Response.Write(ex.Message);
         }
         cnn.Close();
+
+        }
     }
 
+
+    protected void Sauvegarder_Click(object sender, EventArgs e)
+    {   
+        if (Page.IsValid)
+        {
+            database db = new database();
+            OleDbConnection cnn = db.connection();
+            string cmdstr = "UPDATE reservation SET nom = '"+ nom.Text +"'  , prenom = '"+ prenom.Text +"' , cin = '"+cin.Text+"' , nombre = '"+nbrpersonnes.Text+"' , nbnuits = '"+ nbrnuit.Text +"' , formule = '"+ formule.SelectedValue +"' , date_arrivee = '"+ datearrivee.Text +"' WHERE id = "+Request.Params["enr"];
+            try
+            {
+                Response.Write(cmdstr);
+                cnn.Open();
+                OleDbCommand ins = new OleDbCommand(cmdstr, cnn);
+                Response.Write("prob avant execturion");
+                ins.ExecuteNonQuery();
+                Response.Write("prob apres execturion");
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.Message);
+                Console.WriteLine(ex.Message);
+            }
+            cnn.Close();
+           // Response.Redirect("reservations.aspx");
+        }
+    }
 }

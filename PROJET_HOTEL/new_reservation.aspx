@@ -19,11 +19,11 @@
                             <br />
                             <asp:Label CssClass="control-label" runat="server">Prenom</asp:Label>
                             <asp:TextBox ID="prenom" required="requied" CssClass="form-control" runat="server"></asp:TextBox>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="prenom" runat="server" ErrorMessage="Nom invalide" ValidationExpression="^[a-zA-Z]{3,}"></asp:RegularExpressionValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="prenom" runat="server" ErrorMessage="Prenom invalide" ValidationExpression="^[a-zA-Z]{3,}"></asp:RegularExpressionValidator>
                             <br />
                             <asp:Label ID="Label1" CssClass="control-label" runat="server">Cin</asp:Label>
                             <asp:TextBox ID="cin" required="requied" CssClass="form-control" runat="server"></asp:TextBox>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" ControlToValidate="cin" runat="server" ErrorMessage="Nom invalide" ValidationExpression="^[0-9]{8}"></asp:RegularExpressionValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" ControlToValidate="cin" runat="server" ErrorMessage="Cin invalide" ValidationExpression="^[0-9]{8}"></asp:RegularExpressionValidator>
                             <br />
                             <asp:Label ID="Label2" CssClass="control-label" runat="server">Nombre de personnes</asp:Label>
                             <input type="number" class="form-control" id="nbpers" runat="server" max="4" min="1" />
