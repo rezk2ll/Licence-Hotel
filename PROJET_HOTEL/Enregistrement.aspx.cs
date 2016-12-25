@@ -46,13 +46,26 @@ public partial class Enregistrement : System.Web.UI.Page
                                 formule.SelectedValue = "pc";
                             }
                             nbrnuit.Text = rd["nbnuits"].ToString();
+                            //string today = DateTime.Today.Date.ToString();
+                            //string[] date_comps = today.Split( ' ' );
+                            //Response.Write(date_comps[0]);
+                            //Response.Write(datearrivee.Text);
+                            if (true )
+                            {
+                                form1.InnerHtml+= "<input type='submit' class='form-control' value='enregistrer'>";
+                            }
                         }
+                    }
+                    else
+                    {
+                        Response.Redirect("Default.aspx");
                     }
                 }
                 else
                 {
                     Response.Redirect("Default.aspx");
                 }
+
         }
         catch (Exception ex)
         {
@@ -76,10 +89,7 @@ public partial class Enregistrement : System.Web.UI.Page
                 Response.Write(cmdstr);
                 cnn.Open();
                 OleDbCommand ins = new OleDbCommand(cmdstr, cnn);
-                Response.Write("prob avant execturion");
                 ins.ExecuteNonQuery();
-                Response.Write("prob apres execturion");
-
             }
             catch (Exception ex)
             {
@@ -87,7 +97,6 @@ public partial class Enregistrement : System.Web.UI.Page
                 Console.WriteLine(ex.Message);
             }
             cnn.Close();
-           // Response.Redirect("reservations.aspx");
         }
     }
 }
