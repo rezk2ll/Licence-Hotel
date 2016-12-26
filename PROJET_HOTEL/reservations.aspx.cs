@@ -52,7 +52,7 @@ public partial class reservations : System.Web.UI.Page
                             TableCell c8 = new TableCell();
                             TableCell c9 = new TableCell();
                             TableCell c10= new TableCell();
-                            c1.Text = "<a href='reservations.aspx?delete=" + rd["id"].ToString() + "'><span class='glyphicon glyphicon-remove'></span></a>";
+                            
                             c2.Text = (string)rd["nom"];
                             c3.Text = (string)rd["prenom"];
                             c4.Text = (string)rd["cin"];
@@ -72,7 +72,23 @@ public partial class reservations : System.Web.UI.Page
                         }
                         c8.Text = rd["nbnuits"].ToString();
                             c9.Text = rd["date_arrivee"].ToString();
+                        if (rd["est_enregistree"].ToString() == "1")
+                        {
+                            slct = "SELECT * FROM enregistrement where idreservation = " + rd["id"];
+                            OleDbCommand comm= new OleDbCommand(slct, cnn);
+                            OleDbDataReader c = comm.ExecuteReader();
+                            if (c != null)
+                            {
+                                c.Read();
+                                c10.Text = "<a href='detailsEnregistrement.aspx?enr=" + c["id"].ToString() + "'>Enregistrement correspondant</a>";
+                            }
+                        }
+                            else
+                            {
+                            c1.Text = "<a href='reservations.aspx?delete=" + rd["id"].ToString() + "'><span class='glyphicon glyphicon-remove'></span></a>";
                             c10.Text = "<a href='Enregistrement.aspx?enr=" + rd["id"].ToString() + "'><span class='glyphicon glyphicon-floppy-disk'></span></a>";
+                            }
+                            
                             r1.Cells.Add(c1);
                             r1.Cells.Add(c2);
                             r1.Cells.Add(c3);
