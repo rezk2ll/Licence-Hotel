@@ -10,8 +10,6 @@ public partial class detailsEnregistrement : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
-        {
             database db = new database();
             OleDbConnection cnn = db.connection();
             try
@@ -30,68 +28,31 @@ public partial class detailsEnregistrement : System.Web.UI.Page
                         datearrivee.Text = (string)rd["date_arrivee"].ToString();
                         nbrpersonnes.Text = rd["nombre"].ToString();
                         if (rd["formule"].ToString() == "pd")
-                        {
-                            formule.Text = "Petit Déjeuner";
-                        }
+                            {formule.Text = "Petit Déjeuner";}
                         else if (rd["formule"].ToString() == "dp")
-                        {
-                            formule.Text = "Demi-Pension";
-                        }
+                            {formule.Text = "Demi-Pension";}
                         else
-                        {
-                            formule.Text = "Pension Complète";
-                        }
+                            {formule.Text = "Pension Complète";}
                         nbrnuitees.Text = rd["nbnuits"].ToString();
                         //string today = DateTime.Today.Date.ToString();
-                        //string[] date_comps = today.Split(' ');
-                        //string[] date1 = date_comps[0].Split('/');
                         //string[] date2 = datearrivee.Text.Split('-');
-                        //string s = date1[0] + "=" + date1[1] + "=" + date1[2];
-                        //string y = date2[2] + "=" + date2[1] + "=" + date2[0];
-                        //if (s.Equals(y))
-                        //{
-                        //    Checkin.Visible = true;
-                        //    room.Visible = true;
-                        //    Label4.Visible = true;
-                        //    string str = "SELECT * FROM chambres where reservee like " + 0 + " and personnes like " + rd["nombre"].ToString() + " ORDER BY numero";
-                        //    OleDbCommand comm = new OleDbCommand(str, cnn);
-                        //    OleDbDataReader c = comm.ExecuteReader();
-                        //    if (c != null)
-                        //    {
-                        //        while (c.Read())
-                        //        {
-                        //            ListItem l = new ListItem();
-                        //            l.Text = c["numero"].ToString();
-                        //            l.Value = c["numero"].ToString();
-                        //            room.Items.Add(l);
-                        //        }
-                        //    }
-                        //}
-                        //else
-                        //{
-                        //    Checkin.Visible = false;
-                        //    room.Visible = false;
-                        //    Label4.Visible = false;
-                        //}
-
+                        //string y = date2[2] + "/" + date2[1] + "/" + date2[0];
+                        //DateTime dt = Convert.ToDateTime(y);
+                        //Response.Write(dt);
+                        //Response.Write(dt.AddDays(int.Parse(nbrnuitees.Text)));
                     }
                     else
-                    {
-                        Response.Redirect("Default.aspx");
-                    }
+                        {Response.Redirect("Default.aspx");}
                 }
                 else
-                {
-                    Response.Redirect("Default.aspx");
-                }
+                    {Response.Redirect("Default.aspx");}
 
             }
             catch (Exception ex)
-            {
-                Response.Write(ex.Message);
-            }
+                {Response.Write(ex.Message);}
             cnn.Close();
-
-        }
     }
+
+    protected void Facture_Click(object sender, EventArgs e)
+        {Response.Redirect("Facturation.aspx?enr=" + Request.Params["enr"]);}
 }

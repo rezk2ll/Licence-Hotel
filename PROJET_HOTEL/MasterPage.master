@@ -13,7 +13,7 @@
 
 </head>
 <body>
-    <nav class="navbar-default">
+    <nav class="navbar-default" >
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -23,28 +23,26 @@
                     <span class="icon-bar"></span>
                 </button>
                 glyphicon glyphicon-star-empty
-                <a class="navbar-brand" href="./">Licence Hôtel - 
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
+                <a class="navbar-brand" href="Default.aspx" >Licence Hôtel - 
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li id="homem" class="active">
-                        <a href="./">accueil</a>
-                    </li>
-                    <li class="active">
-                        <a href="reservations.aspx">reservations</a>
-                    </li>
-                    <li class="active">
-                        <a href="enregistrement.aspx">Enregistrement</a>
-                    </li>
-                </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li id="homem" class="active">
+                        <a href="Default.aspx">Accueil</a>
+                    </li>
                     <li class="active">
-                        <a href="logout.aspx">checkout</a>
+                        <a href="reservations.aspx">Reservations</a>
+                    </li>
+                    <li class="active">
+                        <a href="Enregistrement.aspx">Enregistrements</a>
+                    </li>
+                    <li class="active">
+                        <a href="logout.aspx">Checkout</a>
                     </li>
                 </ul>
             </div>

@@ -24,10 +24,12 @@
                     
                     <br />
                     <asp:Button ID="Sauvegarder" type="submit" OnClick="Sauvegarder_Click" CssClass="btn-danger" runat="server" Text="Sauvegarder les changements" />
+                    <br />
                     <asp:Label ID="Label4" runat="server" Text="Label">Choisir la chambre à affecter</asp:Label> 
                     <asp:DropDownList CssClass="form-control" ID="room" runat="server">
 
                     </asp:DropDownList>
+                    <br />
                     <asp:Button ID="Checkin" type="submit" OnClick="Checkin_Click" CssClass="btn-danger" runat="server" Text="Passer à l'enregistrement" />
                 </div>
             </div>

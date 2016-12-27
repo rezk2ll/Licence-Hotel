@@ -80,7 +80,7 @@ public partial class reservations : System.Web.UI.Page
                             if (c != null)
                             {
                                 c.Read();
-                                c10.Text = "<a href='detailsEnregistrement.aspx?enr=" + c["id"].ToString() + "?res="+rd["id"]+"'>Enregistrement correspondant</a>";
+                                c10.Text = "<a href='detailsEnregistrement.aspx?enr=" + c["id"].ToString() + "&res="+rd["id"]+"'>Enregistrement correspondant</a>";
                             }
                         }
                             else
