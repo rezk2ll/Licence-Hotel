@@ -20,7 +20,7 @@ public partial class reservation : System.Web.UI.Page
         {
             database db = new database();
             OleDbConnection cnn = db.connection();
-            string cmdstr = "INSERT INTO reservation ( nom , prenom , cin , nombre , date_arrivee , date_reservation , nbnuits ,formule ) VALUES ( '" + nom.Text + "' , '" + prenom.Text + "' ,'" + cin.Text + "' ,'" + nbpers.Value + "' , '" + date_arrivee.Value + "' , '" + DateTime.Now.ToString("dd/MM/yyyy") + "' , '"+nbnuits.Value+"' , '"+ formule.SelectedValue +"' )";
+            string cmdstr = "INSERT INTO reservation ( nom , prenom , cin , nombre , date_arrivee , date_reservation , nbnuits , formule ) VALUES ( '" + nom.Text + "' , '" + prenom.Text + "' ,'" + cin.Text + "' ,'" + nbpers.Value + "' , '" + date_arrivee.Value + "' , '" + DateTime.Now.ToString("dd/MM/yyyy") + "' , '"+nbnuits.Value+"' , '"+ formule.SelectedValue +"' )";
             try
             {
                 cnn.Open();

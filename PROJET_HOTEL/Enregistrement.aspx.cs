@@ -129,15 +129,15 @@ public partial class Enregistrement : System.Web.UI.Page
 
             database db = new database();
             OleDbConnection connexion = db.connection();
-            string sql1 = "INSERT INTO enregistrement ( idreservation , idchambre ) VALUES ( '" + Request.Params["enr"] + "' , '" + room.SelectedValue+ "' )";
+            //string sql1 = "INSERT INTO enregistrement ( idreservation , idchambre ) VALUES ( '" + Request.Params["enr"] + "' , '" + room.SelectedValue+ "' )";
             string sql2 = "UPDATE chambres SET reservee = '1' where numero = "+ room.SelectedValue;
-            string sql3 = "UPDATE reservation SET est_enregistree = '1' where id = " + Request.Params["enr"];
+            string sql3 = "UPDATE reservation SET etat = 'CheckedIn' , chambre = "+ room.SelectedValue +" where id = " + Request.Params["enr"];
             try
             {
                 connexion.Open();
-                OleDbCommand ins = new OleDbCommand(sql1, connexion);
-                ins.ExecuteNonQuery();
-                ins= new OleDbCommand(sql2, connexion);
+                //OleDbCommand ins = new OleDbCommand(sql1, connexion);
+                //ins.ExecuteNonQuery();
+                OleDbCommand ins = new OleDbCommand(sql2, connexion);
                 ins.ExecuteNonQuery();
                 ins = new OleDbCommand(sql3, connexion);
                 ins.ExecuteNonQuery();

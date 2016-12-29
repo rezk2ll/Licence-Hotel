@@ -19,7 +19,6 @@ public partial class reservations : System.Web.UI.Page
             if (Request.Params["delete"] == null)
             {
                 string slct;
-
                 if (Request.HttpMethod.Equals("POST")) 
                 {
                     string dd = "1/1/1"; // valeur null d5allet el requéte b3ath'ha
@@ -37,11 +36,11 @@ public partial class reservations : System.Web.UI.Page
                 }
                     OleDbCommand cmd = new OleDbCommand(slct, cnn);
                     OleDbDataReader rd = cmd.ExecuteReader();
-                    if (rd != null)
+                if (rd != null)
                     {
-                        while (rd.Read())
+                    while (rd.Read())
                         {
-                            TableRow r1 = new TableRow();
+                        TableRow r1 = new TableRow();
                             TableCell c1 = new TableCell();
                             TableCell c2 = new TableCell();
                             TableCell c3 = new TableCell();
@@ -72,22 +71,16 @@ public partial class reservations : System.Web.UI.Page
                         }
                         c8.Text = rd["nbnuits"].ToString();
                             c9.Text = rd["date_arrivee"].ToString();
-                        if (rd["est_enregistree"].ToString() == "1")
+                        if (rd["etat"].ToString() == "CheckedIn")
                         {
-                            slct = "SELECT * FROM enregistrement where idreservation = " + rd["id"];
-                            OleDbCommand comm= new OleDbCommand(slct, cnn);
-                            OleDbDataReader c = comm.ExecuteReader();
-                            if (c != null)
-                            {
-                                c.Read();
-                                c10.Text = "<a href='detailsEnregistrement.aspx?enr=" + c["id"].ToString() + "&res="+rd["id"]+"'>Enregistrement correspondant</a>";
-                            }
+            
+                                c10.Text = "<a href='detailsEnregistrement.aspx?enr=" + rd["id"].ToString() + "'>Client déjà CheckedIn</a>";
                         }
                             else
                             {
                             c1.Text = "<a href='reservations.aspx?delete=" + rd["id"].ToString() + "'><span class='glyphicon glyphicon-remove'></span></a>";
                             c10.Text = "<a href='Enregistrement.aspx?enr=" + rd["id"].ToString() + "'><span class='glyphicon glyphicon-floppy-disk'></span></a>";
-                            }
+                        }
                             
                             r1.Cells.Add(c1);
                             r1.Cells.Add(c2);
@@ -100,7 +93,7 @@ public partial class reservations : System.Web.UI.Page
                             r1.Cells.Add(c8);
                             r1.Cells.Add(c10);
                             listreserv.Rows.Add(r1);
-                        }
+                    }
                     }
             }
             else 

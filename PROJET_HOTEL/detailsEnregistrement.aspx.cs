@@ -15,9 +15,9 @@ public partial class detailsEnregistrement : System.Web.UI.Page
             try
             {
                 cnn.Open();
-                if (Request.Params["res"] != null)
+                if (Request.Params["enr"] != null)
                 {
-                    string slct = "SELECT * FROM reservation where id = " + Request.Params["res"] + " ORDER BY id DESC";
+                    string slct = "SELECT * FROM reservation where id = " + Request.Params["enr"] + " ORDER BY id DESC";
                     OleDbCommand cmd = new OleDbCommand(slct, cnn);
                     OleDbDataReader rd = cmd.ExecuteReader();
                     if (rd != null)

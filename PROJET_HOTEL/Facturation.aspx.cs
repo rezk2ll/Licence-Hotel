@@ -15,51 +15,46 @@ public partial class Facturation : System.Web.UI.Page
         try
         {
             cnn.Open();
-            if (Request.Params["enr"] != null)
+            string req = "SELECT * FROM produit";
+            OleDbCommand com = new OleDbCommand(req, cnn);
+            OleDbDataReader produit = com.ExecuteReader();
+            while (produit.Read())
             {
-                string slct = "SELECT * FROM enregistrement where id = " + Request.Params["enr"] ;
-                OleDbCommand cmdenregistrement = new OleDbCommand(slct, cnn);
-                OleDbDataReader enregistrement = cmdenregistrement.ExecuteReader();
-                if (enregistrement != null)
-                {
-                    enregistrement.Read();
-                    string sql = "SELECT * FROM reservation where id = " + enregistrement["idreservation"];
-                    OleDbCommand cmdreservation= new OleDbCommand(sql, cnn);
-                    OleDbDataReader reservation = cmdreservation.ExecuteReader();
-                    reservation.Read();
-                    string nom = reservation["nom"].ToString() + " " + reservation["prenom"].ToString();
-                    string chambre = enregistrement ["idchambre"].ToString();
-                    //
-                    //rechercher les consommation relative à cet enregistrement
-                    //
-                    string sql2 = "SELECT * FROM consommation c , produit p where c.idarticle = p.id and c.idenregistrement = " + enregistrement["id"];
-                    OleDbCommand cmdconsommation = new OleDbCommand(sql2, cnn);
-                    OleDbDataReader consommation = cmdconsommation.ExecuteReader();
-                    while(consommation.Read())
-                    {
-                        //
-                        //
-                        //Afficher les consommations et calculer le total des prix
-                        //
-                        //
-                    }
-                        
-                    
-                }
-            else
-            {
-                 //
-                 //afficher toutes les enregistrements
-                 //
-                 Response.Redirect("Default.aspx");
-            }
-        }
-            else
-            { Response.Redirect("Default.aspx"); }
+                corps.Controls.Add(new Label()
+                                    {
+                                        Text = produit["nom"].ToString()
+                                    } 
+                                  );
 
-    }
+                string sql2 = "SELECT * FROM consommation c , produit p where c.idarticle = p.id and c.idreservation = " + Request.Params["enr"];
+                OleDbCommand cmdconsommation = new OleDbCommand(sql2, cnn);
+                OleDbDataReader consommation = cmdconsommation.ExecuteReader();
+                int x = 0;
+                while (consommation.Read())
+                {
+                    if (consommation[4].ToString() == produit["nom"].ToString())
+                    {
+                        x += 1;
+                    }
+                }
+                corps.Controls.Add(new TextBox()
+                                    {
+                                        ID = produit["nom"].ToString() , Text=x.ToString() , 
+                                    }
+                                  );
+            }
+            string sql = "SELECT * FROM reservation where id = " + Request.Params["enr"];
+            OleDbCommand cmdreservation = new OleDbCommand(sql, cnn);
+            OleDbDataReader reservation = cmdreservation.ExecuteReader();
+            reservation.Read();
+            string nom = reservation["nom"].ToString() + " " + reservation["prenom"].ToString();
+            string chambre = reservation["chambre"].ToString();
+            cnn.Close();
+        }
         catch (Exception ex)
-        { Response.Write(ex.Message); }
+        {
+            Response.Write(ex);
+        }
         cnn.Close();
     }
 }
