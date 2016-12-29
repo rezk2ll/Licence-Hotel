@@ -23,7 +23,7 @@ public partial class Facturation : System.Web.UI.Page
                 corps.Controls.Add(new Label()
                                     {
                                         Text = produit["nom"].ToString()
-                                    } 
+                                    }
                                   );
 
                 string sql2 = "SELECT * FROM consommation c , produit p where c.idarticle = p.id and c.idreservation = " + Request.Params["enr"];
@@ -37,11 +37,12 @@ public partial class Facturation : System.Web.UI.Page
                         x += 1;
                     }
                 }
-                corps.Controls.Add(new TextBox()
-                                    {
-                                        ID = produit["nom"].ToString() , Text=x.ToString() , 
-                                    }
-                                  );
+                TextBox tbox = new TextBox();
+                tbox.ID = produit["nom"].ToString();
+                tbox.Text = x.ToString();
+
+                tbox.Attributes.Add("type", "number");
+                corps.Controls.Add(tbox);
             }
             string sql = "SELECT * FROM reservation where id = " + Request.Params["enr"];
             OleDbCommand cmdreservation = new OleDbCommand(sql, cnn);
