@@ -56,7 +56,7 @@ public partial class Facturation : System.Web.UI.Page
             OleDbConnection cnn = db.connection();
         if (Page.IsValid)
         {
-            string cmdstr = "UPDATE consommation SET Eau = '" + eau.Text + "'  , Cafe = '" + cafe.Text + "' , Boisson = '" + boisson.Text + "' , Bierre = '" + bierre.Text + "' , Balade = '" + balade.Text + "' , Massage = '" + massage.Text + "' , Hamburgueur = '" + hamburgueur.Text + "' , Soin = '" + soin.Text + "' , Pizza = '" + pizza.Text + "' , Spa = '" + spa.Text + "' WHERE idreservation = " + Request.Params["enr"];
+            string cmdstr = "UPDATE consommation SET Eau = " + eau.Text + "  , Cafe = " + cafe.Text + " , Boisson = " + boisson.Text + " , Bierre = " + bierre.Text + " , Balade = " + balade.Text + " , Massage = " + massage.Text + " , Hamburgueur = " + hamburgueur.Text + " , Soin = " + soin.Text + " , Pizza = " + pizza.Text + " , Spa = " + spa.Text + " WHERE idreservation = " + Request.Params["enr"];
             Response.Write(cmdstr);
             try
             {
