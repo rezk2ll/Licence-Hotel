@@ -27,12 +27,12 @@ public partial class reservations : System.Web.UI.Page
                         string[] date_comps = Request.Params["ctl00$ContentPlaceHolder1$DateArrivee"].Split('-');
                         dd = date_comps[2] + "/" + date_comps[1] + "/" + date_comps[0];
                     }
-                    slct = "SELECT * FROM reservation WHERE cin = '" + Request.Params["ctl00$ContentPlaceHolder1$cin"] + "' or date_reservation = #" + dd + "#";
+                    slct = "SELECT * FROM reservation WHERE ( cin = '" + Request.Params["ctl00$ContentPlaceHolder1$cin"] + "' or date_reservation = #" + dd + "# ) AND etat NOT LIKE 'CheckedOut'";
                 }
 
                 else
                 {
-                    slct = "SELECT * FROM reservation ORDER BY id DESC";
+                    slct = "SELECT * FROM reservation where etat NOT LIKE 'CheckedOut' ORDER BY id DESC";
                 }
                     OleDbCommand cmd = new OleDbCommand(slct, cnn);
                     OleDbDataReader rd = cmd.ExecuteReader();
@@ -70,14 +70,13 @@ public partial class reservations : System.Web.UI.Page
                             c7.Text = "Pension Complète";
                         }
                         c8.Text = rd["nbnuits"].ToString();
-                            c9.Text = rd["date_arrivee"].ToString();
+                        c9.Text = rd["date_arrivee"].ToString();
                         if (rd["etat"].ToString() == "CheckedIn")
                         {
-            
-                                c10.Text = "<a href='detailsEnregistrement.aspx?enr=" + rd["id"].ToString() + "'>Client déjà CheckedIn</a>";
+                             c10.Text = "<a href='detailsEnregistrement.aspx?enr=" + rd["id"].ToString() + "'>Client déjà CheckedIn</a>";
                         }
-                            else
-                            {
+                        else if(rd["etat"].ToString() == "reservée")
+                        {
                             c1.Text = "<a href='reservations.aspx?delete=" + rd["id"].ToString() + "'><span class='glyphicon glyphicon-remove'></span></a>";
                             c10.Text = "<a href='Enregistrement.aspx?enr=" + rd["id"].ToString() + "'><span class='glyphicon glyphicon-floppy-disk'></span></a>";
                         }

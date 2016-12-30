@@ -14,48 +14,67 @@ public partial class Facturation : System.Web.UI.Page
         OleDbConnection cnn = db.connection();
         try
         {
-            cnn.Open();
-            string req = "SELECT * FROM produit";
-            OleDbCommand com = new OleDbCommand(req, cnn);
-            OleDbDataReader produit = com.ExecuteReader();
-            while (produit.Read())
-            {
-                corps.Controls.Add(new Label()
-                                    {
-                                        Text = produit["nom"].ToString()
-                                    }
-                                  );
+                cnn.Open();
 
-                string sql2 = "SELECT * FROM consommation c , produit p where c.idarticle = p.id and c.idreservation = " + Request.Params["enr"];
+                string sql2 = "SELECT * FROM consommation where idreservation = " + Request.Params["enr"];
                 OleDbCommand cmdconsommation = new OleDbCommand(sql2, cnn);
                 OleDbDataReader consommation = cmdconsommation.ExecuteReader();
-                int x = 0;
-                while (consommation.Read())
-                {
-                    if (consommation[4].ToString() == produit["nom"].ToString())
-                    {
-                        x += 1;
-                    }
-                }
-                TextBox tbox = new TextBox();
-                tbox.ID = produit["nom"].ToString();
-                tbox.Text = x.ToString();
+                consommation.Read();
 
-                tbox.Attributes.Add("type", "number");
-                corps.Controls.Add(tbox);
-            }
-            string sql = "SELECT * FROM reservation where id = " + Request.Params["enr"];
-            OleDbCommand cmdreservation = new OleDbCommand(sql, cnn);
-            OleDbDataReader reservation = cmdreservation.ExecuteReader();
-            reservation.Read();
-            string nom = reservation["nom"].ToString() + " " + reservation["prenom"].ToString();
-            string chambre = reservation["chambre"].ToString();
-            cnn.Close();
+                eau.Text = consommation["Eau"].ToString();
+
+                boisson.Text = consommation["Boisson"].ToString();
+
+                bierre.Text = consommation["Bierre"].ToString();
+
+                cafe.Text = consommation["Cafe"].ToString();
+
+                pizza.Text = consommation["Pizza"].ToString();
+
+                hamburgueur.Text = consommation["Hamburgueur"].ToString();
+
+                massage.Text = consommation["Massage"].ToString();
+
+                spa.Text = consommation["Spa"].ToString();
+
+                soin.Text = consommation["Soin"].ToString();
+
+                balade.Text = consommation["Balade"].ToString();
+       
+                cnn.Close();
         }
         catch (Exception ex)
         {
             Response.Write(ex);
         }
         cnn.Close();
+    }
+
+    protected void Sauvegarder_Click(object sender, EventArgs e)
+    {
+            database db = new database();
+            OleDbConnection cnn = db.connection();
+        if (Page.IsValid)
+        {
+            string cmdstr = "UPDATE consommation SET Eau = '" + eau.Text + "'  , Cafe = '" + cafe.Text + "' , Boisson = '" + boisson.Text + "' , Bierre = '" + bierre.Text + "' , Balade = '" + balade.Text + "' , Massage = '" + massage.Text + "' , Hamburgueur = '" + hamburgueur.Text + "' , Soin = '" + soin.Text + "' , Pizza = '" + pizza.Text + "' , Spa = '" + spa.Text + "' WHERE idreservation = " + Request.Params["enr"];
+            Response.Write(cmdstr);
+            try
+            {
+                cnn.Open();
+                OleDbCommand ins = new OleDbCommand(cmdstr, cnn);
+                //Response.Write("ok");
+                ins.ExecuteNonQuery();
+                //Response.Write("ok2");
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.Message);
+                Console.WriteLine(ex.Message);
+            }
+            //Response.Write("bye");
+            cnn.Close();
+            //Response.Write("what !!");
+        }
+        //Response.Redirect("detailsEnregistrement.aspx?enr=" + Request.Params["enr"]);
     }
 }

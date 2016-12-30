@@ -17,7 +17,7 @@ public partial class detailsEnregistrement : System.Web.UI.Page
                 cnn.Open();
                 if (Request.Params["enr"] != null)
                 {
-                    string slct = "SELECT * FROM reservation where id = " + Request.Params["enr"] + " ORDER BY id DESC";
+                    string slct = "SELECT * FROM reservation where id = " + Request.Params["enr"];
                     OleDbCommand cmd = new OleDbCommand(slct, cnn);
                     OleDbDataReader rd = cmd.ExecuteReader();
                     if (rd != null)
@@ -34,12 +34,21 @@ public partial class detailsEnregistrement : System.Web.UI.Page
                         else
                             {formule.Text = "Pension Complète";}
                         nbrnuitees.Text = rd["nbnuits"].ToString();
-                        //string today = DateTime.Today.Date.ToString();
-                        //string[] date2 = datearrivee.Text.Split('-');
-                        //string y = date2[2] + "/" + date2[1] + "/" + date2[0];
-                        //DateTime dt = Convert.ToDateTime(y);
-                        //Response.Write(dt);
-                        //Response.Write(dt.AddDays(int.Parse(nbrnuitees.Text)));
+                        chambre.Text = (string)rd["chambre"];
+                       
+                        DateTime today = DateTime.Today.Date;
+                        string[] date2 = datearrivee.Text.Split('-');
+                        string y = date2[2] + "/" + date2[1] + "/" + date2[0];
+                        DateTime depart = Convert.ToDateTime(y);
+
+                        if (today >= depart.AddDays(int.Parse(rd["nbnuits"].ToString())))
+                        {
+                            Checkout.Visible = true;
+                        }
+                        else
+                        {
+                             Checkout.Visible = false;
+                        }
                     }
                     else
                         {Response.Redirect("Default.aspx");}
@@ -55,4 +64,40 @@ public partial class detailsEnregistrement : System.Web.UI.Page
 
     protected void Facture_Click(object sender, EventArgs e)
         {Response.Redirect("Facturation.aspx?enr=" + Request.Params["enr"]);}
+
+    protected void Checkout_Click(object sender, EventArgs e)
+    {
+        database db = new database();
+        OleDbConnection connexion = db.connection();
+        try
+        {
+            connexion.Open();
+            string sql1 = "SELECT * FROM reservation where id = " + Request.Params["enr"];
+            OleDbCommand cmd = new OleDbCommand(sql1, connexion);
+            OleDbDataReader rd = cmd.ExecuteReader();
+            if (rd != null)
+            {
+                rd.Read();
+                string sql2 = "UPDATE reservation SET etat = 'CheckedOut' where id = " + Request.Params["enr"];
+                string sql3 = "UPDATE chambres SET reservee = '0' where numero = " + rd["chambre"].ToString();
+
+                OleDbCommand ins = new OleDbCommand(sql2, connexion);
+                ins.ExecuteNonQuery();
+                ins = new OleDbCommand(sql3, connexion);
+                ins.ExecuteNonQuery();
+            }
+            else
+            {
+                Response.Redirect("Default.aspx");
+            }
+        }
+        catch (Exception ex)
+        {
+            Response.Write(ex.Message);
+            Console.WriteLine(ex.Message);
+        }
+        connexion.Close();
+        Response.Redirect("reservations.aspx");
+    }
+
 }
