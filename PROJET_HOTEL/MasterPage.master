@@ -32,14 +32,8 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li id="homem" class="active">
-                        <a href="Default.aspx">Accueil</a>
-                    </li>
                     <li class="active">
                         <a href="reservations.aspx">Reservations</a>
-                    </li>
-                    <li class="active">
-                        <a href="Enregistrement.aspx">Enregistrements</a>
                     </li>
                     <li class="active">
                         <a href="logout.aspx">Checkout</a>
