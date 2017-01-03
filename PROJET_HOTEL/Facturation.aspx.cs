@@ -56,8 +56,7 @@ public partial class Facturation : System.Web.UI.Page
             OleDbConnection cnn = db.connection();
         if (Page.IsValid)
         {
-            string cmdstr = "UPDATE consommation SET Eau = " + eau.Text + "  , Cafe = " + cafe.Text + " , Boisson = " + boisson.Text + " , Bierre = " + bierre.Text + " , Balade = " + balade.Text + " , Massage = " + massage.Text + " , Hamburgueur = " + hamburgueur.Text + " , Soin = " + soin.Text + " , Pizza = " + pizza.Text + " , Spa = " + spa.Text + " WHERE idreservation = " + Request.Params["enr"];
-            Response.Write(cmdstr);
+            string cmdstr = "UPDATE consommation SET Eau = " + Request.Params["ctl00$ContentPlaceHolder1$eau"] + "  , Cafe = " + Request.Params["ctl00$ContentPlaceHolder1$cafe"] + " , Boisson = " + Request.Params["ctl00$ContentPlaceHolder1$boisson"] + " , Bierre = " + Request.Params["ctl00$ContentPlaceHolder1$bierre"] + " , Balade = " + Request.Params["ctl00$ContentPlaceHolder1$balade"] + " , Massage = " + Request.Params["ctl00$ContentPlaceHolder1$massage"] + " , Hamburgueur = " + Request.Params["ctl00$ContentPlaceHolder1$hamburgueur"] + " , Soin = " + Request.Params["ctl00$ContentPlaceHolder1$soin"] + " , Pizza = " + Request.Params["ctl00$ContentPlaceHolder1$pizza"] + " , Spa = " + Request.Params["ctl00$ContentPlaceHolder1$spa"] + " WHERE idreservation = " + Request.Params["enr"];
             try
             {
                 cnn.Open();
@@ -75,6 +74,6 @@ public partial class Facturation : System.Web.UI.Page
             cnn.Close();
             //Response.Write("what !!");
         }
-        //Response.Redirect("detailsEnregistrement.aspx?enr=" + Request.Params["enr"]);
+        Response.Redirect("detailsEnregistrement.aspx?enr=" + Request.Params["enr"]);
     }
 }
