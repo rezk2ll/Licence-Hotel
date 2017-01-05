@@ -10,6 +10,20 @@ public partial class Facturation : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        try
+        {
+            if (Session["logged"] == null || Session["logged"].ToString().CompareTo("0") == 0)
+            {
+
+                Response.Redirect("Default.aspx");
+            }
+
+        }
+        catch (Exception ex)
+        {
+            Response.Redirect("Default.aspx");
+        }
+
         database db = new database();
         OleDbConnection cnn = db.connection();
         try

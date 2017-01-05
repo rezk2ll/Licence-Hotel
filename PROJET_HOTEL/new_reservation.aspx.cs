@@ -11,7 +11,20 @@ public partial class reservation : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+        try
+        {
+            if (Session["logged"] == null || Session["logged"].ToString().CompareTo("0") == 0)
+            {
+
+                Response.Redirect("Default.aspx");
+            }
+
+        }
+        catch (Exception ex)
+        {
+            Response.Redirect("Default.aspx");
+        }
+
     }
 
     protected void reserver(object sender, EventArgs e)

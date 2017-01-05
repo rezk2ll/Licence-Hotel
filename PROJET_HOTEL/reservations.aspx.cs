@@ -2,14 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.OleDb;
+
 public partial class reservations : System.Web.UI.Page
 {
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        //if (Session["loggIN"] == null || (bool)Session["loggedIN"] != true) {
+        //    Response.Redirect("~/", false);
+        //}
+
+
         database db = new database();
         OleDbConnection cnn = db.connection();
         try

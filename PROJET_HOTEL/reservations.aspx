@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master" CodeFile="reservations.aspx.cs" Inherits="reservations" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="container" style="padding-top: 2%">
         <div style="position: fixed; top: 50%; left: 10%;">
@@ -39,7 +39,7 @@
                     </a>
                 </div>
                 <div class="panel-body">
-                    <asp:Table ID="listreserv" runat="server" CssClass="table">
+                    <asp:Table width="100%" ID="listreserv" runat="server" CssClass="table">
                         <asp:TableHeaderRow>
                             <asp:TableHeaderCell>
                                 Supprimer

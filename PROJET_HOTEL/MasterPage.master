@@ -35,11 +35,9 @@
                     <li class="active">
                         <a href="reservations.aspx">Reservations</a>
                     </li>
-                    <li class="active">
-                        <a href="logout.aspx">Checkout</a>
-                    </li>
                 </ul>
             </div>
+
         </div>
     </nav>
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

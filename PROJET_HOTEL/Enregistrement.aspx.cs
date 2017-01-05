@@ -9,7 +9,21 @@ using System.Web.UI.WebControls;
 public partial class Enregistrement : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
-    {   
+    {
+        try
+        {
+            if (Session["logged"] == null || Session["logged"].ToString().CompareTo("0") == 0)
+            {
+
+                Response.Redirect("Default.aspx");
+            }
+
+        }
+        catch (Exception ex)
+        {
+            Response.Redirect("Default.aspx");
+        }
+
         if (!IsPostBack)
         {
         database db = new database();
