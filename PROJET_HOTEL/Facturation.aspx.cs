@@ -75,18 +75,18 @@ public partial class Facturation : System.Web.UI.Page
             {
                 cnn.Open();
                 OleDbCommand ins = new OleDbCommand(cmdstr, cnn);
-                //Response.Write("ok");
+
                 ins.ExecuteNonQuery();
-                //Response.Write("ok2");
+
             }
             catch (Exception ex)
             {
                 Response.Write(ex.Message);
                 Console.WriteLine(ex.Message);
             }
-            //Response.Write("bye");
+
             cnn.Close();
-            //Response.Write("what !!");
+
         }
         Response.Redirect("detailsEnregistrement.aspx?enr=" + Request.Params["enr"]);
     }
